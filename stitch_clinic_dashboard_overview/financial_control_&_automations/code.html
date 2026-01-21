@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financial Control &amp; Automations - Dental Clinic CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8b5cf6",
+                        "primary-dark": "#7c3aed",
+                        "accent": "#ec4899",
+                        "background-light": "#fdfcff",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+        .nav-icon-gradient {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .active-nav-link {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+            border-left: 3px solid #8b5cf6;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<aside class="w-64 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 h-full flex flex-col">
+<div class="p-6 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-10 border border-slate-100 shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1AbpdJDITfsJiZktuTlnwzxbzWsASsJ0wjbrjf6zF9HcrIDrj93f7cGU1g72Uyj-CwGHqeAQhKi9ViUjlf4q8cfEM_rDez6WTlWDQ1CBEWWdu9gfdKuE65ZTuRyDul_9UHnIlu7FA4pBdPCRzsdRVbWCQ6T4KxmN-9-sAO97QtuePnSe_LD64P4NEVNcrlUHF7LEnf45NadBubt18xlqp055VuLzov-71yH8Ikeoinwg5JB8S5goGN8Cqw7k2jwO6otOAf2tAeos");'></div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold leading-none bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">SmileCare</h1>
+<p class="text-slate-500 text-xs font-normal">Clinic Admin</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="text-sm font-medium">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="text-sm font-medium">Appointments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 active-nav-link text-primary transition-colors" href="#">
+<span class="material-symbols-outlined filled-icon nav-icon-gradient text-[20px]">account_balance_wallet</span>
+<span class="text-sm font-bold">Finances</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings_input_component</span>
+<span class="text-sm font-medium">Automations</span>
+</a>
+</nav>
+</div>
+<div class="pt-6 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-slate-50 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-500">settings</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Settings</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col overflow-y-auto">
+<header class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-8 py-4">
+<div class="flex flex-col">
+<h2 class="text-xl font-bold tracking-tight">Financial Control &amp; Automations</h2>
+<p class="text-xs text-slate-500">Manage billing, insurance claims, and n8n workflows</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="block w-64 pl-10 pr-3 py-2 border-none bg-slate-100 dark:bg-slate-800 rounded-xl text-sm focus:ring-2 focus:ring-primary/30 transition-all outline-none placeholder:text-slate-400" placeholder="Search invoices, patients..."/>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl text-sm font-bold shadow-md shadow-primary/20 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>New Invoice</span>
+</button>
+<button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-xl border-2 border-primary/20 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXQ1bsCKm5_1RIIMiTa0k5pl5EZ62NY0cr_TqBBrCo5hPcdRK_mYppidrvVgnkzTnNsdtu0-QSWBo9Hbar-E37vEZiqM1v_c_GQjwDpP2GV9tooQLhPloO47bXg8ZLlnZyFjtjMHv9JOSaKf8ifue_hCEtCBk9M4_GbEgwe3w88r2z34q4HXskpEXdN418vX_wLHChYO6ENclmgRTa-Jf3HI_F1bW_hojwsdLCqdcoDt25wOeEAWFjvcq1DSUGs78DnGQfJprVs7g");'></div>
+</div>
+</div>
+</header>
+<div class="p-8 flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1.5 rounded-full">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-widest">n8n Live</span>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex gap-6 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">send</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400 whitespace-nowrap">Billing Reminders: <strong class="text-slate-900 dark:text-slate-200">24 sent today</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">description</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400 whitespace-nowrap">Auto-Invoicing: <strong class="text-slate-900 dark:text-slate-200">Active</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">sync_alt</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400 whitespace-nowrap">Insurance Sync: <strong class="text-slate-900 dark:text-slate-200">5m ago</strong></span>
+</div>
+</div>
+</div>
+<button class="text-primary text-xs font-bold hover:text-primary-dark transition-colors">Manage Workflows</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm transition-shadow hover:shadow-md">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Revenue</p>
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl">payments</span>
+</div>
+</div>
+<p class="text-2xl font-bold tracking-tight">$45,200.00</p>
+<p class="text-emerald-600 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12.5%
+                    </p>
+</div>
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm transition-shadow hover:shadow-md">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Pending Payments</p>
+<div class="p-2 bg-amber-50 rounded-lg">
+<span class="material-symbols-outlined text-amber-500 text-xl">schedule</span>
+</div>
+</div>
+<p class="text-2xl font-bold tracking-tight">$8,450.00</p>
+<p class="text-rose-500 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_down</span> -2.4%
+                    </p>
+</div>
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm transition-shadow hover:shadow-md">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Monthly Profit</p>
+<div class="p-2 bg-accent/10 rounded-lg">
+<span class="material-symbols-outlined text-accent text-xl">savings</span>
+</div>
+</div>
+<p class="text-2xl font-bold tracking-tight">$12,300.00</p>
+<p class="text-emerald-600 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +5.1%
+                    </p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-base font-bold">Monthly Cash Flow</h3>
+<p class="text-sm text-slate-500">Income vs Expenses</p>
+</div>
+<select class="bg-slate-50 dark:bg-slate-800 border-none text-xs font-bold rounded-lg py-1.5 pl-3 pr-8 focus:ring-primary/20 cursor-pointer">
+<option>Last 6 Months</option>
+<option>Last 12 Months</option>
+</select>
+</div>
+<div class="h-48 relative">
+<svg fill="none" height="100%" preserveAspectRatio="none" viewBox="0 0 500 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 120 C 50 100, 100 130, 150 70 C 200 10, 250 80, 300 40 C 350 0, 400 90, 450 60 L 500 110 V 150 H 0 Z" fill="url(#gradPurple)"></path>
+<path d="M0 120 C 50 100, 100 130, 150 70 C 200 10, 250 80, 300 40 C 350 0, 400 90, 450 60 L 500 110" stroke="#8b5cf6" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<linearGradient id="gradPurple" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3"></stop>
+<stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0"></stop>
+</linearGradient>
+</defs>
+</svg>
+<div class="flex justify-between mt-4">
+<span class="text-[11px] font-bold text-slate-400">Jan</span>
+<span class="text-[11px] font-bold text-slate-400">Feb</span>
+<span class="text-[11px] font-bold text-slate-400">Mar</span>
+<span class="text-[11px] font-bold text-slate-400">Apr</span>
+<span class="text-[11px] font-bold text-slate-400">May</span>
+<span class="text-[11px] font-bold text-slate-400">Jun</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-base font-bold">Recent Invoices</h3>
+<button class="text-primary text-sm font-bold hover:text-primary-dark transition-colors">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50/50 dark:bg-slate-800/50 text-slate-500 text-[11px] uppercase tracking-wider font-bold">
+<tr>
+<th class="px-6 py-4">Patient</th>
+<th class="px-6 py-4">Insurance</th>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4">Amount</th>
+<th class="px-6 py-4 text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">JS</div>
+<span class="text-sm font-semibold group-hover:text-primary transition-colors">John Smith</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Delta Dental</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 24, 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white">$1,240.00</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">PAID</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 font-bold text-xs">EM</div>
+<span class="text-sm font-semibold group-hover:text-primary transition-colors">Emily Miller</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Aetna Health</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 25, 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white">$450.00</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">PENDING</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600 font-bold text-xs">RW</div>
+<span class="text-sm font-semibold group-hover:text-primary transition-colors">Robert Wilson</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Direct Pay</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 12, 2023</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900 dark:text-white">$2,100.00</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400">OVERDUE</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-base font-bold">Insurances</h3>
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer hover:text-primary">more_horiz</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-3.5 border border-slate-100 dark:border-slate-800 rounded-xl hover:border-primary/20 transition-all cursor-default group">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shield</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold">Delta Dental</span>
+<span class="text-[10px] text-slate-500">15 Active Claims</span>
+</div>
+</div>
+<div class="w-9 h-5 bg-primary rounded-full relative cursor-pointer shadow-inner">
+<div class="absolute right-0.5 top-0.5 size-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3.5 border border-slate-100 dark:border-slate-800 rounded-xl hover:border-primary/20 transition-all cursor-default group">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shield</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold">Aetna</span>
+<span class="text-[10px] text-slate-500">8 Active Claims</span>
+</div>
+</div>
+<div class="w-9 h-5 bg-primary rounded-full relative cursor-pointer shadow-inner">
+<div class="absolute right-0.5 top-0.5 size-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3.5 border border-slate-100 dark:border-slate-800 rounded-xl hover:border-primary/20 transition-all cursor-default group">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shield</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold">BlueCross</span>
+<span class="text-[10px] text-slate-500">22 Active Claims</span>
+</div>
+</div>
+<div class="w-9 h-5 bg-slate-200 dark:bg-slate-700 rounded-full relative cursor-pointer shadow-inner">
+<div class="absolute left-0.5 top-0.5 size-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 border-2 border-dashed border-slate-100 dark:border-slate-800 rounded-xl text-[11px] font-bold text-slate-400 hover:border-primary/40 hover:text-primary transition-all">
+                                + Add New Provider
+                            </button>
+</div>
+</div>
+<div class="bg-gradient-to-br from-primary/10 via-white to-accent/5 border border-primary/20 rounded-2xl p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-xl">analytics</span>
+<h3 class="text-sm font-bold text-primary">Revenue Reports</h3>
+</div>
+<p class="text-[11px] text-slate-500 mb-4 leading-relaxed">Download your financial statements and tax summaries automatically generated for your clinic.</p>
+<div class="flex flex-col gap-2.5">
+<button class="flex items-center justify-between w-full px-4 py-2.5 bg-white dark:bg-slate-800 rounded-xl text-[11px] font-bold shadow-sm border border-slate-100 hover:border-primary/20 hover:shadow-md transition-all group">
+<span class="group-hover:text-primary transition-colors">Monthly Statement</span>
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">download</span>
+</button>
+<button class="flex items-center justify-between w-full px-4 py-2.5 bg-white dark:bg-slate-800 rounded-xl text-[11px] font-bold shadow-sm border border-slate-100 hover:border-primary/20 hover:shadow-md transition-all group">
+<span class="group-hover:text-primary transition-colors">Tax Summary 2023</span>
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

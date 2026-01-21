@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Treatment &amp; Odontogram Details - DentaCare CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8b5cf6",
+                        "primary-dark": "#7c3aed",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body { font-family: 'Manrope', sans-serif; }
+        }
+        .tooth-grid { display: grid; grid-template-columns: repeat(16, 1fr); gap: 6px; }
+        .tooth-surface { transition: all 0.2s; }
+        .tooth-surface:hover { fill: #8b5cf633; }
+        .active-surface { fill: #8b5cf6; }
+        .planned-surface { fill: #facc15; }
+        .urgent-surface { fill: #ef4444; }::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex flex-col w-full min-h-screen overflow-x-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">dentistry</span>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">DentaCare CRM</h2>
+</div>
+<nav class="flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Patients</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Appointments</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Finances</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="relative flex flex-col min-w-40 h-10 max-w-64">
+<span class="material-symbols-outlined absolute left-3 top-2 text-slate-400">search</span>
+<input class="form-input w-full rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search patient or ID"/>
+</label>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-all">
+<span class="truncate">Save Session</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXL1ZCKNf6F3Av0xRTT2bZu1O_9_CNpOh3gwB-4a3Qm8D316S-3_k1DdZZyVJg20DaQH1NsHmye4AENWnz7Uo3ahJfcGcY6lLM2zgjCRrTVL4WRj4fXr0g9MObaAPBTbpQnkbH0zCPiVOq4jjJ7IzbYh1OqI50qikd6wathxkNfOjGgBzVjB8ghdRPIjREQcAvAu6GJffTgyAgmHx1MTY9dqCJM7_OaeC44gQQYQ503O4hN4-etMDVX7-fiAiCqz86bWqXn_l2FHI");'></div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 py-6 space-y-6">
+<div class="flex items-center gap-2 text-sm px-1">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Patients</a>
+<span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">John Doe</a>
+<span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-semibold">Treatment &amp; Odontogram</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-4 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex min-w-72 flex-col gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl font-extrabold tracking-tight">John Doe - Case #4812</h1>
+<div class="flex gap-4 items-center mt-1">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase">Active Treatment</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Age: 34 | Last Visit: Oct 12, 2023 | Blood Type: O+</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 rounded-xl h-10 px-4 bg-red-50 text-red-600 border border-red-100 text-sm font-bold hover:bg-red-100 transition-all">
+<span class="material-symbols-outlined text-lg">warning</span>
+<span>Emergency Note</span>
+</button>
+<button class="flex items-center gap-2 rounded-xl h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-200 transition-all">
+<span class="material-symbols-outlined text-lg">history</span>
+<span>Full History</span>
+</button>
+</div>
+</div>
+<section class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                    Interactive Odontogram
+                </h2>
+<div class="flex items-center gap-4 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+<div class="flex items-center gap-1.5"><span class="size-3 rounded-md bg-primary"></span> Done</div>
+<div class="flex items-center gap-1.5"><span class="size-3 rounded-md bg-yellow-400"></span> Planned</div>
+<div class="flex items-center gap-1.5"><span class="size-3 rounded-md bg-red-500"></span> Urgent</div>
+<div class="flex items-center gap-1.5"><span class="size-3 rounded-md bg-slate-200 dark:bg-slate-700"></span> Healthy</div>
+</div>
+</div>
+<div class="p-8">
+<div class="mb-12">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 mb-3 px-2">
+<span>Upper Left (18-11)</span>
+<span>Upper Right (21-28)</span>
+</div>
+<div class="tooth-grid">
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">18</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">17</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-primary">16</span><div class="w-full aspect-[2/3] border-2 border-primary rounded-xl p-1 bg-primary/5 flex items-center justify-center cursor-pointer shadow-sm"><span class="material-symbols-outlined text-primary">task_alt</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">15</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">14</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">13</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">12</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">11</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">21</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">22</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">23</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">24</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-red-500">25</span><div class="w-full aspect-[2/3] border-2 border-red-500 rounded-xl p-1 bg-red-50 flex items-center justify-center cursor-pointer shadow-sm"><span class="material-symbols-outlined text-red-500">error</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">26</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">27</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+<div class="flex flex-col items-center gap-1"><span class="text-[10px] font-bold text-slate-400">28</span><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div></div>
+</div>
+</div>
+<div>
+<div class="tooth-grid">
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">48</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">47</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border-2 border-yellow-400 rounded-xl p-1 bg-yellow-50 flex items-center justify-center rotate-180 cursor-pointer shadow-sm"><span class="material-symbols-outlined text-yellow-600">pending</span></div><span class="text-[10px] font-bold text-yellow-600">46</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">45</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">44</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">43</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">42</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">41</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">31</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">32</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">33</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">34</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">35</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">36</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">37</span></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-[2/3] border border-slate-200 rounded-xl p-1 bg-slate-50 flex items-center justify-center rotate-180 cursor-pointer hover:border-primary/40 transition-all"><span class="material-symbols-outlined text-slate-300">dentistry</span></div><span class="text-[10px] font-bold text-slate-400">38</span></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-slate-400 mt-3 px-2">
+<span>Lower Left (48-41)</span>
+<span>Lower Right (31-38)</span>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="border-b border-slate-100 dark:border-slate-800 px-4">
+<nav class="flex gap-8">
+<button class="flex items-center border-b-[3px] border-primary text-primary gap-2 pb-4 pt-4 font-bold text-sm">
+<span class="material-symbols-outlined text-xl">list_alt</span>
+                                Procedures
+                            </button>
+<button class="flex items-center border-b-[3px] border-transparent text-slate-500 gap-2 pb-4 pt-4 font-bold text-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+                                Materials
+                            </button>
+<button class="flex items-center border-b-[3px] border-transparent text-slate-500 gap-2 pb-4 pt-4 font-bold text-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">image</span>
+                                X-Rays &amp; Files
+                            </button>
+</nav>
+</div>
+<div class="p-0">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-[10px] uppercase font-bold text-slate-500 border-b border-slate-100 dark:border-slate-800">
+<tr>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4 text-center">Tooth</th>
+<th class="px-6 py-4">Procedure</th>
+<th class="px-6 py-4">Clinician</th>
+<th class="px-6 py-4 text-right">Cost</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-50 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 whitespace-nowrap text-slate-500">Oct 12, 2023</td>
+<td class="px-6 py-4 text-center font-bold text-primary">16</td>
+<td class="px-6 py-4 font-medium">Composite Restoration - O</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Dr. Sarah Miller</td>
+<td class="px-6 py-4 text-right font-bold">$150.00</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<tr class="bg-yellow-50/30 dark:bg-yellow-900/10 hover:bg-yellow-50/50 dark:hover:bg-yellow-900/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-500">Oct 26, 2023</td>
+<td class="px-6 py-4 text-center font-bold text-yellow-600">46</td>
+<td class="px-6 py-4 font-medium">Planned: Root Canal Phase 1</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Dr. Sarah Miller</td>
+<td class="px-6 py-4 text-right font-bold">$450.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-[10px] bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md font-bold">PLANNED</span>
+</td>
+</tr>
+<tr class="bg-red-50/30 dark:bg-red-900/10 hover:bg-red-50/50 dark:hover:bg-red-900/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-500">Today</td>
+<td class="px-6 py-4 text-center font-bold text-red-500">25</td>
+<td class="px-6 py-4 font-bold text-red-700 dark:text-red-400">Emergency: Extraction</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Dr. Sarah Miller</td>
+<td class="px-6 py-4 text-right font-bold">$210.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-[10px] bg-red-100 text-red-700 px-2 py-1 rounded-md font-bold uppercase">Urgent</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-6 bg-slate-50/50 dark:bg-slate-800/10">
+<button class="w-full bg-white dark:bg-slate-800 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl py-4 text-primary text-sm font-bold flex items-center justify-center gap-2 hover:border-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                                Add New Procedure Entry
+                            </button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">upload_file</span>
+                        Recent Diagnostic Imagery
+                    </h3>
+<div class="flex gap-4 overflow-x-auto pb-2">
+<div class="flex-shrink-0 w-36 h-36 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:bg-slate-50 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-3xl">add_photo_alternate</span>
+<span class="text-[10px] font-bold mt-2 uppercase tracking-wide">Upload File</span>
+</div>
+<div class="flex-shrink-0 w-36 h-36 rounded-2xl bg-cover bg-center border border-slate-200 dark:border-slate-700 group relative overflow-hidden shadow-sm" data-alt="Dental X-ray radiograph" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjDAw7Nlnu7O4JGlp0HBdoZRg3lUKTDGpFxLcnjptN14qzfaApmiqqJpTDx3w7Pnypqe7JWTIdZKm6vYii2f5n5HK24J8btnQiq7t02I_Asoj_8HVHaNTvF7X0vewvB1gLyeJ4u-kjBmPURPg9tuXYJEy8NEVjpgGmhqib5qxmjKVjYgzGYlHt4BAeLcQfDDodd3G2DC8OPmjNaDduQdShIImEliRCIk4VwYoV8VArlG25UmLPUgHsEVf-EeJyVYMfwFEi0-eRhFE');">
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white text-3xl">visibility</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-36 h-36 rounded-2xl bg-cover bg-center border border-slate-200 dark:border-slate-700 group relative overflow-hidden shadow-sm" data-alt="Clinical photo of molar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATVwU79xoLQyxgCT1-kXSkiQaqobBAB8xk2GeqBFqtVGIV1F15qWYVtkWnltkE5jkzu7WsO6FIOI1sVqmbpcN31leco6CLXykPrGWJuTUZx5zhYXtBfJwFHZ-EDct_26sjXvKBwhdyXdBeehj5K1UgK31Ys80FQwsq3YQD9kgC4zLpeVov7EGGY7qRC3gVGvSeqoFbUHc6h4HVCeQJyEGb0f_zBenEUnP7GZ4sFgYfEz6vn-ajen14vNrrSnj7C07eTAa3SvHXP_8');">
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white text-3xl">visibility</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4">Clinical Observations</h3>
+<textarea class="w-full rounded-xl border-slate-200 dark:border-slate-800 dark:bg-slate-800 text-sm h-36 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" placeholder="Enter session notes here..."></textarea>
+<div class="flex gap-2 mt-4">
+<span class="bg-primary/5 px-2.5 py-1 rounded-md text-[10px] font-bold text-primary border border-primary/10 cursor-pointer hover:bg-primary/10 transition-colors">FOLLOW-UP</span>
+<span class="bg-primary/5 px-2.5 py-1 rounded-md text-[10px] font-bold text-primary border border-primary/10 cursor-pointer hover:bg-primary/10 transition-colors">PRESCRIPTION</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+<div class="flex justify-between items-center mb-5">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white">Materials Used Today</h3>
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer hover:text-primary transition-colors">add_box</span>
+</div>
+<ul class="space-y-4">
+<li class="flex justify-between items-start text-xs">
+<div class="flex flex-col gap-0.5">
+<span class="font-bold text-slate-800 dark:text-slate-200">Filtek Supreme Ultra</span>
+<span class="text-slate-400">Shade A2B | Lot #9283</span>
+</div>
+<span class="font-bold text-primary bg-primary/5 px-2 py-0.5 rounded-md">0.5g</span>
+</li>
+<li class="flex justify-between items-start text-xs">
+<div class="flex flex-col gap-0.5">
+<span class="font-bold text-slate-800 dark:text-slate-200">Septocaine 4%</span>
+<span class="text-slate-400">Articaine HCl 1:100k</span>
+</div>
+<span class="font-bold text-primary bg-primary/5 px-2 py-0.5 rounded-md">1.8mL</span>
+</li>
+<li class="flex justify-between items-start text-xs">
+<div class="flex flex-col gap-0.5">
+<span class="font-bold text-slate-800 dark:text-slate-200">Micro-Brush (Fine)</span>
+<span class="text-slate-400">Disposable</span>
+</div>
+<span class="font-bold text-primary bg-primary/5 px-2 py-0.5 rounded-md">2 qty</span>
+</li>
+</ul>
+<button class="w-full mt-6 py-2.5 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-500 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all">
+                        Inventory Log Details
+                    </button>
+</div>
+<div class="bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/20 p-6 shadow-sm">
+<h3 class="text-sm font-bold text-primary mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined">payments</span>
+                        Session Economics
+                    </h3>
+<div class="space-y-3">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 font-medium">Treatment Total</span>
+<span class="font-bold text-slate-900 dark:text-slate-100">$810.00</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 font-medium">Insurance Coverage (Est)</span>
+<span class="font-bold text-green-600">-$648.00</span>
+</div>
+<div class="border-t border-primary/20 pt-4 mt-2 flex justify-between items-baseline">
+<span class="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-tight">Patient Pays</span>
+<span class="text-xl font-extrabold text-primary">$162.00</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3.5 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary-dark transition-all transform hover:-translate-y-0.5">
+                        Process Checkout
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 px-10 text-center text-[11px] text-slate-400 font-medium">
+<p>© 2023 DentaCare CRM Pro. All clinical records are HIPAA compliant and encrypted.</p>
+<div class="mt-2 flex justify-center items-center gap-2">
+            System Status: <span class="inline-flex items-center gap-1 text-green-500 font-bold uppercase tracking-tight"><span class="size-1.5 rounded-full bg-green-500 animate-pulse"></span> Connected</span>
+</div>
+</footer>
+</div>
+
+</body></html>

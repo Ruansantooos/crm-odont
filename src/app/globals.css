@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #8b5cf6;
+  --color-sidebar-bg: #8b45f7;
+  --color-background-light: #f8f9fd;
+  --color-accent-purple: #6d28d9;
+
+  --font-display: "Manrope", sans-serif;
+
+  --radius-default: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-purple-glow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+}
+
+:root {
+  --background: #f8f9fd;
+  --foreground: #1f1635;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-display);
+}
+
+.icon-gradient {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-icon-gradient {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+@layer utilities {
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: 80px repeat(3, 1fr);
+  }
+  .time-slot {
+    height: 80px;
+    border-bottom: 1px solid #f1f5f9;
+    border-right: 1px solid #f1f5f9;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+  }
+}

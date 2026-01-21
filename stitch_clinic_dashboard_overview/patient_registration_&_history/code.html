@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Registration &amp; History - DentalCare CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8e59e9",
+                        "primary-dark": "#7041c6",
+                        "secondary": "#f3e8ff",
+                        "background-light": "#f9f8ff",
+                        "background-dark": "#0f0e17",
+                        "sidebar-purple": "#8e59e9",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.25rem",
+                        "xl": "1.75rem",
+                        "2xl": "2.25rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Manrope', sans-serif;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .gradient-icon {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .active-tab {
+            border-bottom: 4px solid #8e59e9;
+            color: #8e59e9 !important;
+        }
+        .sidebar-gradient {
+            background: linear-gradient(180deg, #8e59e9 0%, #6d28d9 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#1e1b4b] dark:text-slate-50 min-h-screen flex">
+<aside class="w-64 sidebar-gradient text-white hidden lg:flex flex-col sticky top-0 h-screen shrink-0">
+<div class="p-8 flex items-center gap-3">
+<div class="size-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-md">
+<span class="material-symbols-outlined text-white">dentistry</span>
+</div>
+<h1 class="font-bold text-xl tracking-tight">Dental CRM</h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/10 font-bold" href="#">
+<span class="material-symbols-outlined">group</span> Patients
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5 transition-colors text-white/80" href="#">
+<span class="material-symbols-outlined">calendar_month</span> Schedule
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5 transition-colors text-white/80" href="#">
+<span class="material-symbols-outlined">clinical_notes</span> Treatments
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5 transition-colors text-white/80" href="#">
+<span class="material-symbols-outlined">payments</span> Billing
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5 transition-colors text-white/80" href="#">
+<span class="material-symbols-outlined">analytics</span> Marketing
+        </a>
+</nav>
+<div class="p-6 mt-auto">
+<div class="bg-white/10 rounded-2xl p-4 flex items-center gap-3">
+<div class="size-10 rounded-full bg-center bg-cover border-2 border-white/20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxcFGa11ETyJb8rxjNdMQ0SD65i3_LI0fV7ZMN_1Ka7UPMRJ_8yWdOp9PoD3Oh1Vxg80MNkKH5OtU_ooEY56ZsxEldwUafhLIczAJa7qO3GE1FnKybqB7zZBzHxXfHfuB5CzPTUl9ISdPMHu7fu67gNH17FJ-Fdgkj3lKV1GC7wTgirIunGPJyVHJ2e8cmeKZN3dvYToypDC-BHeQ4st9_r4doT9SAwHwlNOhlwIbtoqVsmb6t8t71n0rAQtbcbYX22g9uE7897CQ");'></div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Dr. Sarah Smith</p>
+<p class="text-xs text-white/60">Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0">
+<header class="h-20 bg-white/80 backdrop-blur-md dark:bg-slate-900/80 border-b border-purple-100 dark:border-slate-800 px-8 flex items-center justify-between sticky top-0 z-40">
+<div class="flex items-center gap-4 flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search for patients, records or appointments..."/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="size-11 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-purple-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="size-11 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-purple-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-8 py-8 overflow-y-auto">
+<div class="flex items-center gap-2 mb-8 text-sm">
+<span class="text-slate-400">Patients</span>
+<span class="material-symbols-outlined text-xs text-slate-300">chevron_right</span>
+<span class="text-primary font-bold">John Doe Profile</span>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<aside class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl shadow-purple-500/5 border border-purple-50 dark:border-slate-800">
+<div class="flex flex-col items-center">
+<div class="relative group">
+<div class="size-32 rounded-3xl bg-center bg-cover shadow-2xl ring-4 ring-white dark:ring-slate-800 transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4X8Rid5p_tP_gRAc-QCI7nR3k-CUB0wPomXhcYfOFDTLMYDpXewJLIdlOglCLdAtXqTlV1Y7eKapV28DnjLDMwW_jQ5JC8zjyI7IKy3VrUmNyCIzkz4g20N7WyoON01BBwabXfkYmj8FqqmMTYI3ElQFyb9PNCDOyv6tPjG5wCiMQzketuD1HefsTIxHw3ym8RME_0Lfaf9nMe102n0gQpC3zXJThS7vCIm27Woi1ZmLgD2I_1irI3CLOAsDGm_VghW6KJelDnVU");'></div>
+<div class="absolute -bottom-2 -right-2 size-8 bg-green-500 border-4 border-white dark:border-slate-800 rounded-2xl shadow-lg"></div>
+</div>
+<h2 class="mt-6 text-2xl font-extrabold text-slate-900 dark:text-white">John Doe</h2>
+<p class="text-slate-400 font-medium">#PT-8821 • Male • 38 Yrs</p>
+<div class="mt-4">
+<span class="px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-2xl text-xs font-extrabold uppercase tracking-tight flex items-center gap-2 border border-red-100 dark:border-red-900/30">
+<span class="material-symbols-outlined text-base">warning</span> Penicillin Allergy
+                            </span>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-2 gap-3">
+<button class="col-span-2 flex items-center justify-center gap-2 rounded-2xl py-4 bg-primary text-white font-bold transition-all hover:bg-primary-dark shadow-lg shadow-primary/25 hover:shadow-primary/40">
+<span class="material-symbols-outlined">event</span> Book Appointment
+                        </button>
+<button class="col-span-2 flex items-center justify-center gap-2 rounded-2xl py-4 bg-secondary dark:bg-slate-800 text-primary dark:text-primary font-bold transition hover:bg-purple-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined">edit</span> Edit Profile
+                        </button>
+</div>
+<div class="mt-10 pt-10 border-t border-purple-50 dark:border-slate-800 space-y-6">
+<h3 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest">Contact Information</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 group">
+<div class="size-10 rounded-2xl bg-purple-50 dark:bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">alternate_email</span>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold">Email</p>
+<p class="text-sm font-semibold text-slate-700 dark:text-slate-300">john.doe@example.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="size-10 rounded-2xl bg-purple-50 dark:bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">call</span>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold">Phone</p>
+<p class="text-sm font-semibold text-slate-700 dark:text-slate-300">+1 (555) 123-4567</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-purple-50 dark:border-slate-800 shadow-sm">
+<p class="text-xs text-slate-400 font-bold uppercase mb-2">Last Visit</p>
+<p class="text-xl font-extrabold text-slate-900 dark:text-white">12 Oct 23</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-purple-50 dark:border-slate-800 shadow-sm">
+<p class="text-xs text-slate-400 font-bold uppercase mb-2">Balance</p>
+<p class="text-xl font-extrabold text-red-500">$150.00</p>
+</div>
+</div>
+</aside>
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+<div class="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-xl shadow-purple-500/5 border border-purple-50 dark:border-slate-800 overflow-hidden">
+<div class="flex border-b border-purple-50 dark:border-slate-800 px-8 bg-slate-50/50 dark:bg-slate-800/30">
+<button class="px-8 py-6 text-sm font-extrabold text-slate-400 hover:text-primary transition-colors">Info</button>
+<button class="px-8 py-6 text-sm font-extrabold active-tab relative">
+                            Medical History
+                            <span class="absolute top-6 right-4 size-2 bg-red-500 rounded-full ring-4 ring-white dark:ring-slate-900"></span>
+</button>
+<button class="px-8 py-6 text-sm font-extrabold text-slate-400 hover:text-primary transition-colors">Treatments</button>
+<button class="px-8 py-6 text-sm font-extrabold text-slate-400 hover:text-primary transition-colors">Files</button>
+</div>
+<div class="p-10">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
+<span class="material-symbols-outlined gradient-icon text-3xl">fact_check</span> Health Assessment
+                            </h3>
+<button class="text-primary text-sm font-extrabold flex items-center gap-2 hover:underline">
+<span class="material-symbols-outlined text-lg">add_circle</span> New Record
+                            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+<div class="flex items-center justify-between p-5 bg-purple-50/50 dark:bg-slate-800/50 rounded-2xl border border-purple-100/50 dark:border-slate-700/50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined gradient-icon">heart_check</span>
+<span class="font-bold text-slate-700 dark:text-slate-200">Cardiovascular</span>
+</div>
+<input class="rounded-lg text-primary focus:ring-primary size-6 border-slate-300 dark:bg-slate-700 dark:border-slate-600" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-5 bg-purple-50/50 dark:bg-slate-800/50 rounded-2xl border border-purple-100/50 dark:border-slate-700/50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined gradient-icon">blood_pressure</span>
+<span class="font-bold text-slate-700 dark:text-slate-200">Hypertension</span>
+</div>
+<input checked="" class="rounded-lg text-primary focus:ring-primary size-6 border-slate-300 dark:bg-slate-700 dark:border-slate-600" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-5 bg-purple-50/50 dark:bg-slate-800/50 rounded-2xl border border-purple-100/50 dark:border-slate-700/50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined gradient-icon">water_drop</span>
+<span class="font-bold text-slate-700 dark:text-slate-200">Diabetes</span>
+</div>
+<input class="rounded-lg text-primary focus:ring-primary size-6 border-slate-300 dark:bg-slate-700 dark:border-slate-600" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-5 bg-purple-50/50 dark:bg-slate-800/50 rounded-2xl border border-purple-100/50 dark:border-slate-700/50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined gradient-icon">respiratory_rate</span>
+<span class="font-bold text-slate-700 dark:text-slate-200">Respiratory</span>
+</div>
+<input checked="" class="rounded-lg text-primary focus:ring-primary size-6 border-slate-300 dark:bg-slate-700 dark:border-slate-600" type="checkbox"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div>
+<h4 class="font-extrabold text-sm uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">warning</span> Allergies
+                                </h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-red-50 text-red-600 rounded-xl text-sm font-bold border border-red-100 flex items-center gap-2">
+                                        Penicillin <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</span>
+<span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl text-sm font-bold flex items-center gap-2">
+                                        Latex <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</span>
+<button class="px-4 py-2 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-400 hover:border-primary hover:text-primary transition-all">
+                                        + Add
+                                    </button>
+</div>
+</div>
+<div>
+<h4 class="font-extrabold text-sm uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pill</span> Medications
+                                </h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-purple-50 text-primary rounded-xl text-sm font-bold border border-purple-100 flex items-center gap-2">
+                                        Lisinopril <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</span>
+<button class="px-4 py-2 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-400 hover:border-primary hover:text-primary transition-all">
+                                        + Add
+                                    </button>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-12 border-t border-purple-50 dark:border-slate-800">
+<div class="flex justify-between items-center mb-10">
+<h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Recent Procedures</h3>
+<button class="text-primary font-bold text-sm hover:underline">View All History</button>
+</div>
+<div class="space-y-8 relative before:absolute before:left-6 before:top-2 before:bottom-2 before:w-1 before:bg-purple-100 dark:before:bg-slate-800">
+<div class="relative pl-16 group">
+<div class="absolute left-0 top-0 size-12 bg-white dark:bg-slate-900 border-4 border-primary rounded-2xl flex items-center justify-center z-10 text-primary shadow-lg shadow-primary/20 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl">dentistry</span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] border border-transparent hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<p class="text-xs font-extrabold text-primary mb-1">October 12, 2023</p>
+<h4 class="font-extrabold text-lg text-slate-900 dark:text-white">Root Canal Therapy</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Tooth #14 • <span class="font-semibold text-slate-700 dark:text-slate-300">Dr. Sarah Williams</span></p>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-2xl font-black text-slate-900 dark:text-white">$450.00</span>
+<button class="size-10 rounded-xl hover:bg-white dark:hover:bg-slate-700 text-slate-400 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="relative pl-16 group">
+<div class="absolute left-0 top-0 size-12 bg-white dark:bg-slate-900 border-4 border-slate-200 dark:border-slate-700 rounded-2xl flex items-center justify-center z-10 text-slate-400 shadow-sm transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl">cleaning_services</span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] border border-transparent hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<p class="text-xs font-extrabold text-slate-400 mb-1">April 15, 2023</p>
+<h4 class="font-extrabold text-lg text-slate-900 dark:text-white">Deep Cleaning &amp; Scaling</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Full Mouth • <span class="font-semibold text-slate-700 dark:text-slate-300">Hygienist: Mark T.</span></p>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-2xl font-black text-slate-900 dark:text-white">$120.00</span>
+<button class="size-10 rounded-xl hover:bg-white dark:hover:bg-slate-700 text-slate-400 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 flex justify-end gap-4 pt-8 border-t border-purple-50 dark:border-slate-800">
+<button class="px-8 py-3 rounded-2xl font-bold text-slate-400 hover:text-slate-600 transition">Cancel</button>
+<button class="px-10 py-3 rounded-2xl bg-primary text-white font-extrabold shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all">Save Changes</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-xl shadow-purple-500/5 border border-purple-50 dark:border-slate-800">
+<h3 class="font-extrabold text-xl mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined gradient-icon text-3xl">imagesmode</span> Dental X-Rays &amp; Files
+                    </h3>
+<div class="border-2 border-dashed border-purple-100 dark:border-slate-800 rounded-[2rem] p-12 flex flex-col items-center justify-center text-center bg-purple-50/20 dark:bg-slate-800/30 group hover:border-primary/40 transition-colors">
+<div class="size-20 rounded-3xl bg-white dark:bg-slate-900 shadow-xl shadow-purple-500/10 flex items-center justify-center mb-6 transform group-hover:-translate-y-2 transition-transform">
+<span class="material-symbols-outlined text-5xl gradient-icon">upload_file</span>
+</div>
+<p class="text-slate-900 dark:text-white font-extrabold text-lg">Drop dental X-rays here</p>
+<p class="text-slate-400 font-medium text-sm mt-2 max-w-xs">Supports high-res JPG, PNG and DICOM formats up to 50MB</p>
+<button class="mt-8 px-10 py-3 bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 text-primary font-extrabold rounded-2xl shadow-sm hover:shadow-md transition-all">Select Files</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<button class="fixed bottom-10 right-10 size-16 bg-primary text-white rounded-3xl shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">chat_bubble</span>
+</button>
+</div>
+
+</body></html>

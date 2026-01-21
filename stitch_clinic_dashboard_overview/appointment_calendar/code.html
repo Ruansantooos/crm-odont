@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Appointment Calendar - Smile Dental CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8b5cf6",
+                        "primary-dark": "#7c3aed",
+                        "sidebar-purple": "#8b5cf6",
+                        "background-light": "#fdfcff",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: 80px repeat(3, 1fr);
+            }
+            .time-slot {
+                height: 80px;
+                border-bottom: 1px solid #f1f5f9;
+                border-right: 1px solid #f1f5f9;
+            }
+            .dark .time-slot {
+                border-bottom-color: #1e293b;
+                border-right-color: #1e293b;
+            }
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<aside class="w-64 flex flex-col bg-sidebar-purple text-white shrink-0 shadow-xl z-30">
+<div class="p-6 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-white/20 backdrop-blur-md rounded-xl size-10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">dentistry</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-tight">Smile Dental</h1>
+<p class="text-white/70 text-xs">Clinic Management</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1.5">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/70 hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white text-primary shadow-lg" href="#">
+<span class="material-symbols-outlined font-bold">calendar_today</span>
+<p class="text-sm font-bold">Calendar</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/70 hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium">Patients</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/70 hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<p class="text-sm font-medium">Treatments</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/70 hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<p class="text-sm font-medium">Finances</p>
+</a>
+</nav>
+<div class="mt-4 pt-6 border-t border-white/10">
+<div class="flex items-center justify-between mb-4">
+<span class="text-sm font-bold">October 2023</span>
+<div class="flex gap-1">
+<button class="p-1 hover:bg-white/10 rounded-lg"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 hover:bg-white/10 rounded-lg"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 text-[10px] text-center font-bold text-white/40 mb-2">
+<span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+</div>
+<div class="grid grid-cols-7 text-xs text-center gap-y-1">
+<span class="p-1 text-white/30">28</span><span class="p-1 text-white/30">29</span><span class="p-1 text-white/30">30</span><span class="p-1">1</span><span class="p-1">2</span><span class="p-1">3</span><span class="p-1">4</span>
+<span class="p-1 bg-white text-primary rounded-full flex items-center justify-center font-bold">5</span><span class="p-1">6</span><span class="p-1">7</span><span class="p-1">8</span><span class="p-1">9</span><span class="p-1">10</span><span class="p-1">11</span>
+<span class="p-1">12</span><span class="p-1">13</span><span class="p-1">14</span><span class="p-1">15</span><span class="p-1 font-bold text-white underline decoration-2 underline-offset-4">16</span><span class="p-1">17</span><span class="p-1">18</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-2xl">
+<img alt="User" class="size-10 rounded-full object-cover border-2 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoRtqFvIK6umqXCkeVpEqJvHFE4ueV9y-5cvECrvOBMM5NCTSXYhvLokcRYf9-RNglFzTdPTa0C89aUTdm2-Y8NlyqgMSLFjlUmIA-BX4BrrKBTdRbGjP1so0-qvoZwaMJVjhe0QaP8N4N6g5xxnX-di1l7jz5QJKJJ7zxYkItVCEkIOYeNMwRCrCl698Vncs3-Dym9X15SbcF1dwW7REOy-CLU9oBwyMRoh1V4wQmX2t8mv-DOzJ8Ls8pOdMq9kOjMOOqdX51QBw"/>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold truncate text-white">Dr. Sarah Miller</p>
+<p class="text-xs text-white/60 truncate">Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0 bg-white dark:bg-slate-900 overflow-hidden">
+<header class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 px-8 py-5">
+<div class="flex items-center gap-8">
+<h2 class="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-white">Appointment Calendar</h2>
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl pl-12 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search patients or treatments..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-sm font-bold transition-all text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">sync</span>
+                    Sync Google
+                </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Appointment
+                </button>
+</div>
+</header>
+<div class="flex items-center justify-between px-8 py-3 border-b border-slate-100 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-10">
+<div class="flex p-1.5 bg-slate-100 dark:bg-slate-800 rounded-xl">
+<button class="px-6 py-2 text-xs font-bold bg-white dark:bg-slate-700 shadow-md rounded-lg text-primary">Day</button>
+<button class="px-6 py-2 text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Week</button>
+<button class="px-6 py-2 text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Month</button>
+</div>
+<div class="flex gap-3 items-center">
+<span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mr-2">Dentists:</span>
+<button class="flex items-center gap-2 h-10 px-4 rounded-xl bg-primary/5 border border-primary/10 text-primary text-xs font-bold hover:bg-primary/10 transition-all">
+                    All Dentists <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="flex gap-2">
+<button class="h-10 px-4 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold hover:bg-slate-100 transition-all">Dr. Smith</button>
+<button class="h-10 px-4 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold hover:bg-slate-100 transition-all">Dr. Jones</button>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto bg-white dark:bg-background-dark relative">
+<div class="calendar-grid sticky top-0 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800">
+<div class="h-20 flex flex-col items-center justify-center border-r border-slate-100 dark:border-slate-800">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Time</span>
+</div>
+<div class="h-20 flex items-center px-6 gap-4 border-r border-slate-100 dark:border-slate-800">
+<div class="relative">
+<img alt="Dr. Smith" class="size-11 rounded-full bg-slate-200 ring-2 ring-primary/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6PGe9t1elN_aDnQdirATzmqqoPwWbx0YmNjQfT4eJPtU_X9bMnWJadkUXmG-4HQty7Ym9lR5aB5rUXcjr51rOxifaW5KwbAC_PFJF-qtPN9OXSDW7XFIDoWAMdwULYkrMUvMl-Hqre7_NO1xdzBiGh7h10tInT3xr7zbi1eEnEnqyKE7Y8KKHzf3-snz-ZniQPFrJY_rpT0fCNPiNfjWCNaY9HEeIfcHb3t6bLSJqYCVcmrOXA8NOUGtx6ZOStPbNZC518xm33DM"/>
+<div class="absolute -bottom-1 -right-1 size-4 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-extrabold text-slate-800 dark:text-white">Dr. Smith</span>
+<span class="text-[10px] text-primary uppercase font-bold tracking-tight">General Dentist</span>
+</div>
+</div>
+<div class="h-20 flex items-center px-6 gap-4 border-r border-slate-100 dark:border-slate-800">
+<img alt="Dr. Jones" class="size-11 rounded-full bg-slate-200 ring-2 ring-rose-500/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Z2ra0beI5WYlqdIhliAxl1zeeKGTIcmPdGusnO4FXelASR_IWxU-7fsnsHu1tC9S-3W-VnLG03OW8BPcVoi6K4CUHBPQgH6E1vGMcUfPdi8rpxC7S88R0EaQdDesGKm0tWrw48SPXB8Z4QOif-KY8fnUm1Fj4S7s9dYc3eQxylfgQhb5PSmDV53hchB41JwY1xVcgxiSUh7oAcDvyihpGqzkbM8SHevas9WCGA1K-Q2pMTDGf2Ix3EjdaK73_pDSx2QrLEXHIh8"/>
+<div class="flex flex-col">
+<span class="text-sm font-extrabold text-slate-800 dark:text-white">Dr. Jones</span>
+<span class="text-[10px] text-rose-500 uppercase font-bold tracking-tight">Oral Surgeon</span>
+</div>
+</div>
+<div class="h-20 flex items-center px-6 gap-4 border-r border-slate-100 dark:border-slate-800">
+<img alt="Dr. Lee" class="size-11 rounded-full bg-slate-200 ring-2 ring-amber-500/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhiOpmy4JvPtluRu_wQp1I2WW0tWQxJVj6D8_XmbXDd0oxS---fslef_K1JlBu7WJpg5NiUEGih5_MngesY4YwtRdJhblg3opZ5WZ3V8II9L-6WmJuKDDE2L9g1tNutlHLL5TVzso95SHhVWQ4HroGNiFxvg5Gpa5wRruvD6ByosMpj2qC8hNRu2AbfW4yVlHioMdk2-SWSnMnTEVRM9vSRVsEEiKTNu15Ltv5u-eT7MD2reSV3yQQ3ZVah5IZ2C2BF2Nc59sy78"/>
+<div class="flex flex-col">
+<span class="text-sm font-extrabold text-slate-800 dark:text-white">Dr. Lee</span>
+<span class="text-[10px] text-amber-500 uppercase font-bold tracking-tight">Orthodontics</span>
+</div>
+</div>
+</div>
+<div class="calendar-grid relative">
+<div class="absolute w-full top-[220px] left-0 pointer-events-none z-10 flex items-center">
+<div class="w-[80px] bg-primary text-[10px] text-white font-bold px-2 py-1 rounded-full text-center ml-2 shadow-lg shadow-primary/30">10:45 AM</div>
+<div class="flex-1 h-0.5 bg-primary/40 relative">
+<div class="absolute -left-1 -top-1 size-2.5 bg-primary rounded-full shadow-lg ring-2 ring-white"></div>
+</div>
+</div>
+<div class="flex flex-col bg-slate-50/50 dark:bg-slate-900/50">
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">08 AM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">09 AM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">10 AM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">11 AM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">12 PM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">01 PM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">02 PM</span></div>
+<div class="time-slot flex items-center justify-center"><span class="text-[11px] text-slate-400 font-bold uppercase">03 PM</span></div>
+</div>
+<div class="flex flex-col relative">
+<div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div>
+<div class="absolute top-[85px] left-3 right-3 h-[110px] bg-primary/5 border border-primary/20 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-extrabold text-primary uppercase tracking-widest">Checkup</span>
+<span class="material-symbols-outlined text-sm text-primary/40 group-hover:text-primary transition-colors">more_vert</span>
+</div>
+<h4 class="text-sm font-extrabold mt-1 text-slate-800">James Harrison</h4>
+<div class="flex items-center gap-2 mt-3">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span class="text-[11px] font-bold text-primary/70">09:00 - 10:30 AM</span>
+</div>
+</div>
+<div class="absolute top-[245px] left-3 right-3 h-[65px] bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 rounded-2xl p-3 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="text-xs font-extrabold text-slate-800">Emma Wilson</h4>
+<span class="text-[9px] font-extrabold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full uppercase">Cleaning</span>
+</div>
+<div class="text-[10px] text-slate-500 font-bold mt-1">11:00 AM</div>
+</div>
+</div>
+<div class="flex flex-col relative bg-slate-50/20 dark:bg-slate-800/10">
+<div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div>
+<div class="absolute top-[165px] left-3 right-3 h-[220px] bg-rose-50 dark:bg-rose-900/20 border border-rose-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-[10px] font-extrabold text-rose-600 uppercase tracking-widest">Surgery</span>
+<h4 class="text-sm font-extrabold mt-1 text-slate-800">Marcus Thorne</h4>
+<p class="text-[11px] font-bold text-rose-500 mt-1">Extraction</p>
+</div>
+<div class="size-8 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-rose-500">emergency</span>
+</div>
+</div>
+<p class="text-[11px] text-slate-500 mt-4 leading-relaxed line-clamp-2">Patient has history of local anesthesia sensitivity. Monitor vitals.</p>
+<div class="flex items-center gap-3 mt-4 pt-4 border-t border-rose-100/50">
+<div class="flex -space-x-2">
+<img alt="Dentist" class="size-7 rounded-full border-2 border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe_YGTRbKr7DpwyMQ2D_31C_D_6s722zp6ONWKojjp44_jZUrlI8OW0p0-zkm6BXSLf9TnPdNGG4FEhkpEuS01VpRAipePI_IltRpwdmahKOtX3Fxdh5JRf62xuCRBjBHoUaJInA9lgOT6m_djLyjSVoGDcfBhwIMAQv5vPGtjavwAlnEItAZyDnlVQhz9b6e-TeJRkNKyeVlP64XZi0J0KUto37p1zmrhQz2hDpSBOhPM_OtLcOmWz57pOiaQcfXGq-YV5P5n4Gg"/>
+<img alt="Assistant" class="size-7 rounded-full border-2 border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoHsGb3wjpwrLS4HiGZGwaN1WlXHLDkRD7-sQ1F4Yt1PLfJW-HzEbUdkf9JRPVIGpuG1J7monyCa-8Ugp5TPp36TcdtdCshRgCq9srGwJBZAwpStnQFjaN43kPY8X8uRjYmk71605nScoVeLBUYI9v82QmGkNn-cP_fb9kdeLeEnBb81M4o1YgZSkao0VIFZhVcVB2BJqx3A0_JCJ3RbXHiC8bVF3KYjeTm5VrL1pI55abDMC5yQtAs3sag4m1vKDCcFahXZxhgzc"/>
+</div>
+<span class="text-[11px] font-bold text-rose-600">10:00 - 12:45 PM</span>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-3 py-1 rounded-lg bg-rose-100 text-[10px] font-extrabold text-rose-700">Pre-paid</span>
+<span class="px-3 py-1 rounded-lg bg-white border border-slate-100 text-[10px] font-extrabold text-slate-600">X-Ray Ready</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col relative">
+<div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div>
+<div class="absolute top-[85px] left-3 right-3 h-[85px] bg-amber-50 dark:bg-amber-900/20 border border-amber-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="text-sm font-extrabold text-slate-800">Sarah Jenkins</h4>
+<span class="material-symbols-outlined text-[18px] text-amber-500">dentistry</span>
+</div>
+<div class="flex items-center justify-between mt-3">
+<span class="text-[11px] font-bold text-amber-700 uppercase tracking-tight">Braces Adjustment</span>
+<span class="text-[10px] text-slate-400 font-bold">09:00 AM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="h-14 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between px-8 shrink-0">
+<div class="flex gap-8">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-primary shadow-sm shadow-primary/40"></div>
+<span class="text-[11px] font-extrabold text-slate-500 uppercase tracking-widest">Consults: 12</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-rose-500 shadow-sm shadow-rose-500/40"></div>
+<span class="text-[11px] font-extrabold text-slate-500 uppercase tracking-widest">Surgeries: 4</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/40"></div>
+<span class="text-[11px] font-extrabold text-slate-500 uppercase tracking-widest">Cleanings: 18</span>
+</div>
+</div>
+<div class="text-xs font-bold text-slate-400">
+                Clinic Utilization: <span class="text-primary font-black">84%</span>
+</div>
+</footer>
+</main>
+<aside class="w-80 border-l border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 flex flex-col gap-8">
+<div>
+<h3 class="font-extrabold text-xl text-slate-800 dark:text-white mb-6">Patient Overview</h3>
+<div class="p-5 bg-slate-50 dark:bg-slate-800 rounded-3xl flex flex-col gap-5 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-4">
+<img alt="Patient" class="size-14 rounded-2xl object-cover shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9a_VjVCgkLfNH3yXSFb1qgiJICfokIJ67GZWxk8CR3RcctA1UGZzHgeXUjEOiNkY6s2WgWK_PTWzmxB77LDYKzOHmlqIgPsA0fbOQn2iesxoDMQtyXXWVsTfUKL7k5cZBhwdPOhU40VmYOAVeAHisca-V7qqz1rrHXDlYbwblbEl56BnUfyLJRFsDKUMBPxRhNrVpFZ5XNjfQtcP7BNQOFPKNcHUySlpgBmCDmOqya9QYAhK5_O8SfTZDs9caoAX9WzlGAOOQMso"/>
+<div>
+<p class="font-black text-slate-800">Marcus Thorne</p>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-tighter">#PAT-8829</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6 bg-white dark:bg-slate-900 p-4 rounded-2xl">
+<div class="flex flex-col">
+<span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Treatment</span>
+<span class="text-sm font-black text-slate-800">Extraction</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Balance</span>
+<span class="text-sm font-black text-rose-500">$1,240.00</span>
+</div>
+</div>
+<div class="flex gap-3 pt-2">
+<button class="flex-1 py-3 text-xs font-black bg-primary text-white rounded-xl shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all">View Full Chart</button>
+<button class="px-4 py-3 text-xs font-bold bg-white dark:bg-slate-700 border border-slate-100 dark:border-slate-600 rounded-xl hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined text-sm">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto flex flex-col gap-4">
+<h3 class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">Recent Alerts</h3>
+<div class="group flex gap-4 p-3 hover:bg-slate-50 rounded-2xl transition-all">
+<div class="shrink-0 size-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 ring-1 ring-amber-100">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</div>
+<div class="flex flex-col">
+<p class="text-xs font-bold text-slate-800">Dr. Jones - Delayed</p>
+<p class="text-[11px] font-medium text-slate-400 mt-0.5">Running 15m behind schedule</p>
+</div>
+</div>
+<div class="group flex gap-4 p-3 hover:bg-slate-50 rounded-2xl transition-all">
+<div class="shrink-0 size-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary ring-1 ring-primary/20">
+<span class="material-symbols-outlined text-xl">payments</span>
+</div>
+<div class="flex flex-col">
+<p class="text-xs font-bold text-slate-800">Payment Verified</p>
+<p class="text-[11px] font-medium text-slate-400 mt-0.5">Sarah Jenkins (Claim #441)</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-slate-900 dark:bg-white dark:text-slate-900 text-white font-black rounded-2xl flex items-center justify-center gap-3 shadow-xl hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined text-xl">print</span>
+            Print Daily Sheet
+        </button>
+</aside>
+</div>
+
+</body></html>

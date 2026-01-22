@@ -40,6 +40,17 @@ export async function POST(request: Request) {
         const dentistName = appointment.dentist_name;
         console.log(`[Sync] Starting sync for appointment ${appointmentId} (Dentist: ${dentistName}, Action: ${action || 'upsert'})`);
 
+        // Safety check for empty time range
+        let startTime = appointment.start_time;
+        let endTime = appointment.end_time;
+
+        if (startTime === endTime) {
+            console.warn(`[Sync] Start and end time are identical (${startTime}). Adding 30min duration fallback.`);
+            const start = new Date(startTime);
+            const end = new Date(start.getTime() + 30 * 60000); // +30 minutes
+            endTime = end.toISOString();
+        }
+
         // Verificar se já existe sincronização
         const { data: existingSync } = await supabaseAdmin
             .from('appointment_google_sync')
@@ -61,7 +72,11 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: true, action: 'deleted' });
         }
 
-        const googleEvent = appointmentToGoogleEvent(appointment);
+        const googleEvent = appointmentToGoogleEvent({
+            ...appointment,
+            start_time: startTime,
+            end_time: endTime
+        });
 
         if (existingSync) {
             console.log(`[Sync] Updating existing event ${existingSync.google_event_id}`);

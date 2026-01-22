@@ -119,6 +119,12 @@ export default function CalendarPage() {
             const start = new Date(`${form.date}T${form.start_time}:00`);
             const end = new Date(`${form.date}T${form.end_time}:00`);
 
+            // Validação de horário
+            if (end <= start) {
+                alert('O horário de término deve ser posterior ao horário de início.');
+                return;
+            }
+
             const { data: newAppointment, error } = await supabase.from('appointments').insert({
                 patient_id: form.patient_id,
                 dentist_name: form.dentist_name,

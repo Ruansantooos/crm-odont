@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { supabase } from '@/lib/supabase';
 import SearchableSelect from '@/components/SearchableSelect';
 import GoogleCalendarButton from '@/components/GoogleCalendarButton';
@@ -333,7 +333,9 @@ export default function CalendarPage() {
                         </button>
                     </div>
 
-                    <GoogleCalendarButton dentistName={DENTISTS[0].name} />
+                    <Suspense fallback={<div className="h-10 w-40 bg-gray-100 animate-pulse rounded-xl" />}>
+                        <GoogleCalendarButton dentistName={DENTISTS[0].name} />
+                    </Suspense>
 
                     <button
                         onClick={() => setIsModalOpen(true)}

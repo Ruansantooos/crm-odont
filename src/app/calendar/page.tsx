@@ -31,7 +31,6 @@ interface Appointment {
 
 export default function CalendarPage() {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
-    const [stats, setStats] = useState({ total: 0, surgeries: 0, occupancy: 0 }); // occupancy is dummy for now
     const [loading, setLoading] = useState(true);
 
     // View State
@@ -95,18 +94,16 @@ export default function CalendarPage() {
             console.error('Error fetching appointments:', error);
         } else {
             setAppointments(data as any || []);
-            calculateStats(data as any || []);
         }
         setLoading(false);
     };
 
-    const calculateStats = (apps: Appointment[]) => {
-        const activeApps = apps.filter(a => a.status !== 'cancelled');
+    const stats = useMemo(() => {
+        const activeApps = appointments.filter(a => a.status !== 'cancelled');
         const total = activeApps.length;
         const surgeries = activeApps.filter(a => a.type === 'Cirurgia').length;
-        // Mock occupancy logic
-        setStats({ total, surgeries, occupancy: 84 });
-    };
+        return { total, surgeries, occupancy: 84 };
+    }, [appointments]);
 
     const handleCreateAppointment = async () => {
         try {

@@ -76,10 +76,11 @@ export default function Dashboard() {
 
       const monthlyRevenue = financialData?.reduce((sum, r) => sum + r.amount, 0) || 0;
 
-      // 4. Recent Activities (Recent appointments or status updates)
+      // 4. Recent Activities (Recent non-cancelled appointments)
       const { data: recent } = await supabase
         .from('appointments')
         .select('*, patients(name)')
+        .neq('status', 'cancelled')
         .order('created_at', { ascending: false })
         .limit(4);
 

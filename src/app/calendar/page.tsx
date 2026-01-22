@@ -267,10 +267,42 @@ export default function CalendarPage() {
             // Update local state and close
             setAppointments(apps => apps.map(a => a.id === selectedAppointment.id ? { ...a, status } : a));
             setIsDetailsModalOpen(false);
-            alert(`Status atualizado para: ${status === 'completed' ? 'Concluído' : 'Cancelado'}`);
+
+            // Re-fetch to ensure sync state is correct (optional but safe)
+            // fetchAppointments(); 
         } catch (error) {
             console.error('Error updating status:', error);
             alert('Erro ao atualizar status.');
+        }
+    };
+
+    const handleDeleteAppointment = async () => {
+        if (!selectedAppointment) return;
+        if (!confirm('Tem certeza que deseja excluir permanentemente esta consulta?')) return;
+
+        try {
+            const { error } = await supabase
+                .from('appointments')
+                .delete()
+                .eq('id', selectedAppointment.id);
+
+            if (error) throw error;
+
+            // Trigger Google Calendar Sync deletion
+            fetch('/api/google/sync', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ appointmentId: selectedAppointment.id, action: 'delete' })
+            }).catch(err => {
+                console.error('Failed to sync deletion:', err);
+            });
+
+            // Update local state
+            setAppointments(apps => apps.filter(a => a.id !== selectedAppointment.id));
+            setIsDetailsModalOpen(false);
+        } catch (error) {
+            console.error('Error deleting appointment:', error);
+            alert('Erro ao excluir consulta.');
         }
     };
 
@@ -624,6 +656,10 @@ export default function CalendarPage() {
                                         const appsByDate: Record<string, Appointment[]> = {};
                                         appointments.forEach(app => {
                                             const matchesDentist = selectedDentist === 'all' || DENTISTS.find(d => d.id === selectedDentist)?.name === app.dentist_name;
+
+                                            // Não mostrar consultas canceladas na agenda
+                                            if (app.status === 'cancelled') return;
+
                                             if (matchesDentist) {
                                                 const dateKey = new Date(app.start_time).toISOString().split('T')[0];
                                                 if (!appsByDate[dateKey]) appsByDate[dateKey] = [];
@@ -929,6 +965,13 @@ export default function CalendarPage() {
                                     Concluir
                                 </button>
                             </div>
+                            <button
+                                onClick={handleDeleteAppointment}
+                                className="w-full mt-3 py-2 text-gray-400 hover:text-red-500 text-xs font-bold transition-colors flex items-center justify-center gap-1"
+                            >
+                                <span className="material-symbols-outlined text-sm">delete</span>
+                                Excluir permanentemente
+                            </button>
                         </div>
                     </div>
                 </div>

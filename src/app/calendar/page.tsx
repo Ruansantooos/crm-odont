@@ -101,8 +101,9 @@ export default function CalendarPage() {
     };
 
     const calculateStats = (apps: Appointment[]) => {
-        const total = apps.length;
-        const surgeries = apps.filter(a => a.type === 'Cirurgia').length;
+        const activeApps = apps.filter(a => a.status !== 'cancelled');
+        const total = activeApps.length;
+        const surgeries = activeApps.filter(a => a.type === 'Cirurgia').length;
         // Mock occupancy logic
         setStats({ total, surgeries, occupancy: 84 });
     };

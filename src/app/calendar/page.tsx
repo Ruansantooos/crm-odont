@@ -6,9 +6,8 @@ import SearchableSelect from '@/components/SearchableSelect';
 import GoogleCalendarButton from '@/components/GoogleCalendarButton';
 
 const DENTISTS = [
-    { id: '1', name: 'Dra. Silva', specialty: 'Clínica Geral', color: 'primary', ringColor: 'ring-primary/10' },
-    { id: '2', name: 'Dr. Jones', specialty: 'Cirurgião', color: 'rose-500', ringColor: 'ring-rose-500/10' },
-    { id: '3', name: 'Dra. Lee', specialty: 'Ortodontia', color: 'amber-500', ringColor: 'ring-amber-500/10' }
+    { id: '1', name: 'Dr. Fabrício', specialty: 'Clínica Geral', color: 'primary', ringColor: 'ring-primary/10' },
+    { id: '2', name: 'Dra. Carla', specialty: 'Ortodontia', color: 'rose-500', ringColor: 'ring-rose-500/10' }
 ];
 
 const TIME_SLOTS = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];

@@ -62,7 +62,7 @@ export default function Sidebar() {
                         }}
                     ></div>
                     <div className="flex flex-col min-w-0">
-                        <p className="text-white text-sm font-bold truncate">Dra. Sarah Silva</p>
+                        <p className="text-white text-sm font-bold truncate">Dr. Fabrício</p>
                         <p className="text-white/40 text-[10px] font-bold uppercase truncate">Administrador</p>
                     </div>
                 </div>

@@ -98,7 +98,7 @@ export default function Dashboard() {
                     <p className="text-sidebar-bg text-base font-bold">João Silva fez check-in</p>
                     <p className="text-gray-400 text-sm font-medium">10:30</p>
                   </div>
-                  <p className="text-gray-500 text-sm mt-1">Atendido por <span className="text-accent-purple font-semibold">Dra. Sarah Silva</span> • Consultório 04</p>
+                  <p className="text-gray-500 text-sm mt-1">Atendido por <span className="text-accent-purple font-semibold">Dr. Fabrício</span> • Consultório 04</p>
                 </div>
                 {/* Atividade 2 */}
                 <div className="flex flex-col items-center">

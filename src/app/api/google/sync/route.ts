@@ -58,6 +58,20 @@ export async function POST(request: Request) {
             .eq('appointment_id', appointmentId)
             .single();
 
+        // Se a consulta foi cancelada, deletar do Google Calendar
+        if (appointment.status === 'cancelled' && existingSync) {
+            console.log(`[Sync] Appointment cancelled. Deleting event ${existingSync.google_event_id} from Google Calendar`);
+            await deleteGoogleEvent(dentistName, existingSync.google_event_id);
+
+            // Remover mapeamento
+            await supabaseAdmin
+                .from('appointment_google_sync')
+                .delete()
+                .eq('appointment_id', appointmentId);
+
+            return NextResponse.json({ success: true, action: 'deleted_on_cancel' });
+        }
+
         if (action === 'delete' && existingSync) {
             console.log(`[Sync] Deleting event ${existingSync.google_event_id} from Google Calendar`);
             // Deletar do Google Calendar

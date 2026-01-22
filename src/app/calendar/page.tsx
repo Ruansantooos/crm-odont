@@ -200,6 +200,9 @@ export default function CalendarPage() {
             const matchesDentist = selectedDentist === 'all' || DENTISTS.find(d => d.id === selectedDentist)?.name === app.dentist_name;
             if (!matchesDentist) return false;
 
+            // Não mostrar consultas canceladas na agenda principal
+            if (app.status === 'cancelled') return false;
+
             const appDate = new Date(app.start_time);
             const viewDate = new Date(form.date + 'T00:00:00');
 

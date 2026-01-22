@@ -1,0 +1,8 @@
+stitch_clinic_dashboard_overview/
+.DS_Store
+README.md
+check_db.ts
+check_db.js
+node_modules/
+.next/
+.env.local
